@@ -1,0 +1,174 @@
+/* Dark and gold theme with a full-page background image.
+   Loaded after styles.css; it only overrides colours, not layout. */
+
+:root {
+  color-scheme: dark;
+  --gold: #f0b93a;
+  --gold-strong: #ffd369;
+  --gold-line: rgba(240, 185, 58, .28);
+  --gold-soft: rgba(240, 185, 58, .14);
+  --text: #ffffff;
+  --text-muted: #f3ead4;
+  --text-faint: #d9cba6;
+  --glass: rgba(14, 9, 2, .74);
+  --glass-inner: rgba(0, 0, 0, .34);
+  --field: rgba(0, 0, 0, .46);
+  --positive: #7fdc9f;
+  --negative: #ff9d8b;
+  color: var(--text);
+  background: #000;
+}
+
+/* The picture fills the viewport height and stays put while the page scrolls.
+   Its edges are black, so the black page colour continues it on wide screens. */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background: #000 url('./assets/background.webp') center top / auto 100% no-repeat;
+}
+/* A light veil keeps text readable without hiding the picture. */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(180deg, rgba(0, 0, 0, .18) 0%, rgba(0, 0, 0, .42) 100%);
+}
+
+/* Glass surfaces */
+.auth-shell { background: transparent; }
+.auth-card, .topbar, .summary-card, .panel {
+  border-color: var(--gold-line);
+  background: var(--glass);
+  box-shadow: 0 14px 40px rgba(0, 0, 0, .5);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+.summary-primary { border-color: var(--gold-line); background: var(--glass); color: var(--text); }
+.summary-card strong { color: var(--gold-strong); }
+.settlement-member { border-color: var(--gold-line); background: var(--glass-inner); }
+
+/* Text */
+h1, h2, h3, .panel-title, .signed-in-user, .expense-title, .amount-cell,
+.settlement-stats dd, .settlement-row b, .settlements-heading h3,
+.settlement-member-head strong, .person-name-static { color: var(--text); }
+.eyebrow, th { color: var(--gold); }
+.auth-copy, .subtitle, .helper-text, .card-label, .card-foot, .split-help,
+.summary-primary .card-label, .summary-primary .card-foot, .person-info span,
+.settlement-stats dt, .settlement-row, .settled-message, td, .empty-state p,
+.auth-loading, label, .split-fieldset legend { color: var(--text-muted); }
+footer { color: var(--text); text-shadow: 0 1px 4px #000; }
+.positive, .settlement-row strong { color: var(--positive); }
+.negative { color: var(--negative); }
+.settled { color: var(--text-faint); }
+
+/* Lines */
+.person-row, .settlements, .settlement-row, th, td { border-color: rgba(240, 185, 58, .16); }
+.collapse-chevron { border-color: var(--gold); }
+
+/* Fields */
+input, select { border-color: var(--gold-line); color: var(--text); background: var(--field); }
+input:focus, select:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(240, 185, 58, .2); }
+input::placeholder { color: var(--text-faint); }
+select option { color: var(--text); background: #1a1206; }
+.person-name-input { color: var(--text); background: transparent; }
+.split-option { border-color: var(--gold-line); color: var(--text-muted); background: var(--field); }
+.split-option:has(input:checked) { border-color: var(--gold); color: var(--gold-strong); background: var(--gold-soft); }
+.split-option input { accent-color: var(--gold); }
+.split-add { color: var(--gold); }
+.split-add:hover { border-color: var(--gold); background: var(--gold-soft); }
+
+/* Buttons */
+.auth-submit, .primary-button, .fab, .add-person-row .add-person-confirm {
+  border-color: transparent;
+  color: #2a1a00;
+  background: linear-gradient(135deg, #ffd369, #e9a21f);
+  box-shadow: 0 8px 20px rgba(233, 162, 31, .28);
+}
+.auth-submit:hover:not(:disabled), .primary-button:hover, .fab:hover {
+  background: linear-gradient(135deg, #ffdc85, #f0ad2c);
+  box-shadow: 0 10px 24px rgba(233, 162, 31, .36);
+}
+.auth-submit:focus-visible, .sign-out-button:focus-visible { outline-color: rgba(240, 185, 58, .5); }
+.brand-mark, .heading-icon {
+  color: #2a1a00;
+  background: linear-gradient(145deg, #ffd369, #e9a21f);
+  box-shadow: 0 6px 14px rgba(233, 162, 31, .3);
+}
+.sign-out-button, .add-person-row button, .notice button {
+  border-color: var(--gold-line);
+  color: var(--text);
+  background: var(--field);
+}
+.sign-out-button:hover { border-color: var(--negative); color: var(--negative); background: rgba(255, 157, 139, .12); }
+.back-link {
+  padding: 7px 12px;
+  border: 1px solid var(--gold-line);
+  border-radius: 999px;
+  color: var(--text);
+  background: var(--glass);
+}
+.back-link:hover { color: var(--gold-strong); }
+.delete-button { color: var(--text-faint); }
+.delete-button:hover { color: var(--negative); }
+
+/* Chips and avatars */
+.people-count, .period-pill, .person-name-static em { color: var(--gold-strong); background: var(--gold-soft); }
+.account-avatar, .avatar, .avatar-1, .avatar-2, .avatar-3 { color: var(--gold-strong); background: var(--gold-soft); }
+.avatar-1 { color: #ffb48a; background: rgba(255, 150, 100, .16); }
+.avatar-2 { color: #9be3b4; background: rgba(110, 210, 150, .15); }
+.avatar-3 { color: #d7b8f5; background: rgba(190, 150, 240, .16); }
+.empty-icon { color: var(--gold-strong); background: var(--gold-soft); }
+
+/* Messages */
+.notice { border-color: var(--gold-line); color: var(--text); background: var(--glass); }
+.notice-error, .auth-error { border-color: rgba(255, 157, 139, .4); color: #ffc2b6; background: rgba(120, 30, 18, .55); }
+.form-error { color: var(--negative); }
+
+/* Extra legibility over the picture: a soft dark edge behind all text,
+   and slightly heavier small print. */
+.app-shell, .auth-shell { text-shadow: 0 1px 2px rgba(0, 0, 0, .85); }
+.auth-submit, .primary-button, .fab, .brand-mark, .heading-icon,
+.add-person-row .add-person-confirm, input, select { text-shadow: none; }
+.helper-text, .card-foot, .card-label, .split-help, .person-info span,
+.settlement-stats dt, .settled-message, td, .empty-state p, .auth-copy { font-weight: 500; }
+
+/* Expense / fund switch */
+.kind-switch { border-color: var(--gold-line); background: var(--field); }
+.kind-switch button { color: var(--text-muted); }
+.kind-switch button.is-active { color: #2a1a00; background: linear-gradient(135deg, #ffd369, #e9a21f); text-shadow: none; }
+
+/* Signed-in user chip in the header */
+.account-summary {
+  gap: 10px;
+  padding: 5px 16px 5px 5px;
+  border: 1px solid rgba(240, 185, 58, .55);
+  border-radius: 999px;
+  background: linear-gradient(135deg, rgba(240, 185, 58, .24), rgba(240, 185, 58, .08));
+  box-shadow: 0 0 0 3px rgba(240, 185, 58, .08), 0 6px 16px rgba(0, 0, 0, .35);
+}
+.account-avatar {
+  width: 38px;
+  height: 38px;
+  flex-basis: 38px;
+  color: #2a1a00;
+  background: linear-gradient(145deg, #ffd369, #e9a21f);
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, .35);
+  font-size: 15px;
+  text-shadow: none;
+}
+.account-copy { flex-direction: column; line-height: 1.15; }
+.signed-in-user { color: var(--gold-strong); font-family: Manrope, sans-serif; font-size: 15px; font-weight: 800; }
+
+/* In-page date picker */
+.date-picker-trigger { border-color: var(--gold-line); color: var(--text); background: var(--field); }
+.date-picker-trigger:focus-visible, .date-picker-trigger[aria-expanded="true"] { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(240, 185, 58, .2); }
+.date-picker-popover { border-color: var(--gold-line); color: var(--text); background: #1a1206; box-shadow: 0 18px 44px rgba(0, 0, 0, .65); }
+.date-picker-weekday { color: var(--gold); }
+.date-picker-header button:hover, .date-picker-day:hover { background: var(--gold-soft); }
+.date-picker-day.is-today { border-color: var(--gold); }
+.date-picker-day.is-selected { color: #2a1a00; background: linear-gradient(135deg, #ffd369, #e9a21f); text-shadow: none; }
+.date-picker-footer button { border-color: var(--gold-line); color: var(--text); }
+.date-picker-footer button:hover { background: var(--gold-soft); }
