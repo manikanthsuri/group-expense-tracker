@@ -205,3 +205,13 @@ footer span { padding: 0 5px; }
 @media (max-width: 430px) {
   .date-picker-popover { left: 0; right: auto; }
 }
+
+/* iPhone and iPad zoom the page when a field with text smaller than 16px gets
+   focus. On touch screens every typing field uses 16px, so no zoom happens. */
+@media (hover: none) and (pointer: coarse) {
+  input, select, textarea, .person-name-input, .filter-select, .date-picker-trigger { font-size: 16px; }
+  .person-name-input { height: 26px; }
+}
+
+/* No double-tap zoom on phones. */
+html { touch-action: manipulation; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
